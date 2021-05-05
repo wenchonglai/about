@@ -1,6 +1,12 @@
+
+html {
+  font-size: 11px;
+}
+  
 body {
   background: black;
   overflow-x: hidden;
+  min-width: 320px;
 }
 
 nav {
@@ -67,7 +73,7 @@ header.masthead > div.container{
 }
 
 header.masthead h1 {
-  font-size: 72px;
+  font-size: 60px;
   font-weight: 600;
   margin-bottom: 36px;
   color: white;
@@ -102,30 +108,31 @@ header.masthead h3.shadow {
   z-index: 0;
 }
 
+figure {
+  overflow: hidden;
+}
+
 section {
   background: black;
   color: #e1e1e8;
-  min-height: 200vh;
   position: relative;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #0f0f0f;
   max-width: 1440px;
   margin: auto;
-  box-sizing: border-box;;
+  box-sizing: border-box;
+  padding: 48px 0;
+  min-height: 100vh;
 }
 
 section p {
   color: #a1a1a6;
-  max-width: 1000px;
+  max-width: 720px;
 }
 
 section div.container {
   display: flex;
-  top: 0;
-  position: sticky;
-  height: 100vh;
-  flex: 0 0 83.3333333333%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -134,13 +141,12 @@ section div.container {
 }
 
 section h2 {
-  font-size: 3rem;
-  font-weight: 600;
+  font-size: 2rem;
   margin-bottom: 1rem;
 } 
 
 section h4 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -150,8 +156,16 @@ section p {
   margin-bottom: 1.4rem;
 }
 
+div.text-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 section div.two-columns, section div.two-columns-images {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -159,8 +173,7 @@ section div.two-columns-images {
   user-select: none;
 }
 
-section div.two-columns > * {
-  flex: 0 0 41.6666666666%;
+section div.two-columns > div {
   padding: 1.5rem;
   position: relative;
 }
@@ -170,8 +183,8 @@ section div.two-columns-images > * {
 }
 
 section.dual div > img, figure > img  {
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 1rem;
+  padding: 1rem;
   background-color: #171717;
   border: 2px solid #5f5f5f;
   width: 100%;
@@ -199,16 +212,11 @@ section.dual img:last-child {
 }
 
 section.mapping div.container {
-  flex-direction: row;
+  flex-direction: column;
 }
 section.mapping div.container > div {
   display: flex;
   flex-direction: column;
-}
-section.mapping div.container > div.text-container{
-  width: 420px;
-  flex: 1 0 auto;
-  margin-right: 3em;
 }
 
 section.mapping figure {
@@ -220,6 +228,8 @@ section.mapping figure {
 section.mapping div.carousel-vertical {
   overflow: hidden;
   position: relative;
+  margin-top: 48px;
+  max-width: 640px;
 }
 
 div.carousel-vertical figure > img {
@@ -263,12 +273,12 @@ section.gaming figure:after {
   height: 240px;
 }
 
-section.gaming figure > a {
+section.gaming figure > a, section.productivity figure > a {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 64px;
-  z-indeX: 1;
+  z-indeX: 2;
   width: 100%;
   text-align: center;
   text-shadow: 0 0 20px #0000007f;
@@ -276,20 +286,18 @@ section.gaming figure > a {
 
 section.productivity figure {
   position: relative;
-  transform: translateX(20%);
-  justify-self: end;
-}
-
-section.productivity figure a {
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  z-index: 2;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: visible;
 }
 
 section.productivity figure img {
   width: calc(100% - 10px);
-  margin: 3px;
+  margin-bottom: 32px;
+  max-width: 1000px;
 }
 
 section.productivity figure::after {
@@ -300,5 +308,69 @@ section.productivity figure::after {
   top: 0;
   left: 0;
   z-index: 1;
-  box-shadow: -165px -165px 160px 0 #000 inset;
+  box-shadow: 0 -200px 200px 0 #000 inset;
+}
+
+@media (min-width: 576px) {
+  header.masthead h1 {
+    font-size: 72px;
+  }
+  section div.container{
+    flex: 0 0 90%;
+  }
+
+  section h2 {
+    font-size: 3rem;
+    font-weight: 600;
+  } 
+
+  section h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 11px;
+  }
+
+  section div.two-columns, section div.two-columns-images {
+    flex-wrap: nowrap;
+  }
+
+  section.mapping div.container {
+    flex-direction: row;
+  }
+
+  section.mapping div.container > div.text-container{
+    width: 280px;
+    flex: 1 0 auto;
+    margin-right: 2em;
+  }
+
+  section {
+    min-height: 200vh;
+  }
+
+  section div.two-columns > div {
+    flex: 0 0 41.6666666666%;
+  }
+
+  section div.container{
+    flex: 0 0 83.3333333333%;
+    top: 0;
+    position: sticky;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 900px) {
+  html {
+    font-size: 13px;
+  }
+
+  section.mapping div.container > div.text-container{
+    width: 360px;
+    margin-right: 3em;
+  }
 }
