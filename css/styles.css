@@ -40,7 +40,7 @@ nav > div.right > ul > li {
 }
 
 nav > div.right a {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 figure a {
@@ -73,7 +73,7 @@ header.masthead > div.container{
 }
 
 header.masthead h1 {
-  font-size: 60px;
+  font-size: 48px;
   font-weight: 600;
   margin-bottom: 36px;
   color: white;
@@ -126,6 +126,10 @@ section {
   min-height: 100vh;
 }
 
+section:last-of-type {
+  padding-bottom: 0;
+}
+
 section p {
   color: #a1a1a6;
   max-width: 720px;
@@ -174,7 +178,6 @@ section div.two-columns-images {
 }
 
 section div.two-columns > div {
-  padding: 1.5rem;
   position: relative;
 }
 
@@ -333,13 +336,18 @@ section.productivity figure::after {
   html {
     font-size: 11px;
   }
-
+  
   section div.two-columns, section div.two-columns-images {
     flex-wrap: nowrap;
   }
 
   section.mapping div.container {
     flex-direction: row;
+  }
+
+  section div.two-columns > div {
+    padding: 1.5rem;
+    position: relative;
   }
 
   section.mapping div.container > div.text-container{
