@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="two-columns-images">
-        <img src="./assets/img/dual-swe.jpg" alt="Software Engineering"/>
+        <img id="dual-swe" src="./assets/img/dual-swe.jpg" alt="Software Engineering"/>
         <img src="./assets/img/dual-ud.jpg" alt="Urban Design"/>
       </div>
     </div>
@@ -121,12 +121,15 @@
 const GAPS = 8;
 const NUMS_SKILLS_BY_YEAR = [0,2,4,7,9,11,13,15,17,23]
 const yearsContainer = document.getElementById('years-container');
+const dualSection = document.querySelector('section.dual');
+const gamingSection = document.querySelector('section.gaming');
 const skillsContainer = document.getElementById('skills-container');
 const skillsSection = document.querySelector('section.skills');
-const gamingSection = document.querySelector('section.gaming');
+const dualImages = document.querySelectorAll('section.dual img');
 const isSticky = () => window.innerHeight >= 720 && window.innerWidth >= 768;
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
+
 canvas.width = ctx.width = 700;
 canvas.height = ctx.height = 350;
 
@@ -191,25 +194,39 @@ let scrollAnimationFrame;
 
 window.addEventListener('scroll', e => {
   cancelAnimationFrame(scrollAnimationFrame);
+  let {scrollY} = window;
 
   scrollAnimationFrame = requestAnimationFrame(() => {
     if (isSticky()){
-      const skillsOffsetTop = skillsSection.offsetTop;
-      const skillsOffsetHeight = skillsSection.offsetHeight / 2;
+      const dualOffsetTop = dualSection.offsetTop;
+      const dualOffsetHeight = dualSection.offsetHeight / 2;
+
+      if (scrollY >= dualOffsetTop && scrollY <= dualOffsetTop + dualOffsetHeight / 2){
+        const percentage = (dualOffsetHeight / 2 - scrollY + dualOffsetTop) / dualOffsetHeight * 2;
+        dualImages[0].style.transform = `perspective(100px) rotateY(${-2 - percentage * 1.5}deg) translate(-1%, ${percentage * 6 - 3}%)`;
+        dualImages[1].style.transform = `perspective(100px) rotateY(${3 - percentage * 1.5}deg) translate(1%)`;
+        return;
+      }
+
       const gamingOffsetTop = gamingSection.offsetTop;
       const gamingOffsetHeight = gamingSection.offsetHeight / 2;
-      
-      if (window.scrollY >= gamingOffsetTop && window.scrollY <= gamingOffsetTop + gamingOffsetHeight / 10) {
+
+      if (scrollY >= gamingOffsetTop && scrollY <= gamingOffsetTop + gamingOffsetHeight / 10) {
         document.querySelectorAll('section.gaming img').forEach((el, i) => {
           el.style.bottom = Math.max(
-            i * 350 * (gamingOffsetHeight / 10 - (window.scrollY - gamingOffsetTop)) / gamingOffsetHeight,
+            i * 350 * (gamingOffsetHeight / 10 - (scrollY - gamingOffsetTop)) / gamingOffsetHeight,
             0
           );
         });
+
+        return;
       }
 
-      if (window.scrollY >= skillsOffsetTop) {
-        const percentage = 25 * (window.scrollY - skillsOffsetTop) / skillsOffsetHeight;
+      const skillsOffsetTop = skillsSection.offsetTop;
+      const skillsOffsetHeight = skillsSection.offsetHeight / 2;
+
+      if (scrollY >= skillsOffsetTop) {
+        const percentage = 25 * (scrollY - skillsOffsetTop) / skillsOffsetHeight;
         const mod = percentage % 0;
   
         document.querySelectorAll('div.skill').forEach((el, i) => {
