@@ -61,7 +61,7 @@
     <div class="container">
       <div class="text-container">
         <h2>Make story-telling interactive maps.</h2>
-        <p>Since 2013, I have started making web applications for interactive maps using JavaScript, jQuery, SVG, Canvas, and React. Compared to the static maps that planners conventionally produce, these interactive maps were much more powerful in conveying comprehensive, informative, and personalized messages tailored to each and every individual amongst thousands of recipients. These interactive maps were also proven to be more cost-efficient, as the web-based approach eliminates the countless redraws incurred during design iterations.</p>
+        <p>Since 2013, I have started developing web applications for interactive maps using JavaScript, jQuery, SVG, Canvas, and React. Compared to the static maps that planners conventionally produce, these interactive maps were much more powerful in conveying comprehensive, informative, and personalized messages tailored to each and every individual amongst thousands of recipients. These interactive maps were also proven to be more cost-efficient, as the web-based approach eliminates countless redraws that may incur during design iterations.</p>
       </div>
       <div class="carousel-vertical">
         <figure>
@@ -75,10 +75,12 @@
       </div>
     </div>
   </section>
-  <section class="gaming">
+  <section class="gaming" id="gaming">
     <div class="container">
-      <h2>Maps are fun. Play with them!</h2>
-      <p>Map-based video games such as SimCity and Civilization always fascinate me. Recently, I started developing my own strategic board game. My ultimate goal is to create a turn-based game that incorporates a geographic information system and cellular automata in order to adequately addresses how geography affects economy system and logistics. </p>
+      <div class="text-container">
+        <h2>Maps are fun. Play with them!</h2>
+        <p>Map-based video games such as SimCity and Civilization always fascinate me. Recently, I started developing my own strategic board game. My ultimate goal is to create a turn-based game that incorporates a geographic information system and cellular automata in order to adequately address how geography affects economy system and logistics. </p>
+      </div>
       <figure>
         <img src="./assets/img/gaming-base.png" alt="" />
         <img src="./assets/img/gaming-unit.png" alt="" />
@@ -92,20 +94,141 @@
     <div class="container">
       <div class="text-container">
         <h2>Boost up design productivity through IT.</h2>
-        <p>I write codes that automates repetitive architecture design processes. After joining JKA, I brought down the time spent in 3D base mapping and building cost estimation by over 90%. Full-stack software engineering training in App Academy further prepared me for develop the back-end of office productivity tools using modern application frameworks such as Ruby on Rails and MERN.</p>
+        <p>I write codes that automates repetitive architecture design processes. After joining JKA, I brought down the time spent in 3D base mapping and building cost estimation by over 90%. Full-stack software engineering training in App Academy further prepared me for developing the back-end of office productivity tools using modern application frameworks such as Ruby on Rails and MERN.</p>
       </div>
       <figure>
         <img src="./assets/img/productivity-doggie-slides.jpg" alt=""/>
-        <caption><a href="https://doggie-slides.herokuapp.com/#/slides/about">Visit DoggIe Slides, a clone of Google Slides that incorporated basic presentation editing functionality within two
-        weeks.</a></caption>
+        <caption><a href="https://doggie-slides.herokuapp.com/#/slides/about">Visit DoggIe Slides, a Google Slides clone made in two weeks.</a></caption>
       </figure>
     </div>
   </section>
   <section class="skills">
     <div class="container">
-      <h2>Stay unsatiated. Keep learning.</h2>
-      <p>Since the first line of JavaScript I wrote in 2013, I have been continuously learning new languages, libraries, frameworks, as well as advanced data structures and algorithm in order to keep up with the advancing technologies that may bring positive changes to city life. Long journey as it is, I am taking solid steps day by day towards future goals.</p>
+      <div class="text-container">
+        <h2>Stay unsatiated. Keep learning.</h2>
+        <p>Since the first line of JavaScript I wrote in 2013, I have been continuously learning new languages, libraries, frameworks, as well as advanced data structures and algorithm in order to keep up with the advancing technologies that may bring positive changes to city life. Long journey as it is, I am taking solid steps day by day towards future goals.</p>
+      </div>
+      <div class="visualization">
+        <img src="./assets/img/galaxy.jpg"/>
+        <div id="skills-container"></div>
+        <div id="years-container"></div>
+      </div>
     </div>
   </section>
+
+  <script>
+
+const GAPS = 8;
+const NUMS_SKILLS_BY_YEAR = [0,2,4,7,9,11,13,15,17,23]
+const yearsContainer = document.getElementById('years-container');
+const skillsContainer = document.getElementById('skills-container');
+const skillsSection = document.querySelector('section.skills');
+const gamingSection = document.querySelector('section.gaming');
+const isSticky = () => window.innerHeight >= 720 && window.innerWidth >= 768;
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = ctx.width = 700;
+canvas.height = ctx.height = 350;
+
+ctx.strokeStyle = "#3f7fff";
+ctx.lineWidth = 2;
+
+ctx.beginPath();
+
+for (let i = 1.5; i < 350; i += 173){
+  ctx.moveTo(0, i);
+  ctx.lineTo(800, i);
+  ctx.stroke();
+}
+
+ctx.lineWidth = 1;
+for (i = 0; i < 8; i++){
+
+  ctx.moveTo(i * 100, 2);
+  ctx.lineTo((i + 1) * 100, 348);
+  ctx.moveTo((i + 1) * 100, 2);
+  ctx.lineTo(i * 100, 348);
+  ctx.stroke();
+}
+
+skillsContainer.appendChild(canvas);
+
+for (let yr = 2013; yr <= 2021; yr ++){
+  let year = document.createElement('div');
+  year.classList.add('year');
+  year.innerText = yr;
+
+  yearsContainer.appendChild(year);
+}
+
+[ ["JavaScript", "jQuery", "SVG", "HTML5", "ES6", "Node", "Express", "Canvas"],
+  ["Three.js", "React", "AWS", "LeetCode", "Python", "React Hooks", "AJAX"],
+  ["Project Euler", "Ruby", "Rails", "Redux", "PostgreSQL", "MongoDB", "socket.io", "Git"]
+].forEach((sub, j) => {
+  let div = document.createElement('div');
+  let len = sub.length;
+
+  div.classList.add('skill-row');
+
+  sub.forEach((el, i) => {
+    let skill = document.createElement('div');
+    skill.classList.add('skill');
+    skill.style.left = `${(i + 0.5 + (len < GAPS ? 0.5 : 0) ) * 100 / GAPS}%`;
+    skill.innerHTML = el;
+    div.appendChild(skill);
+  });
+
+  skillsContainer.appendChild(div);
+});
+      
+window.addEventListener('resize', e => {
+  document.querySelectorAll('div.skill').forEach((el, i) => {
+    el.style.opacity = 1;
+  });
+});
+
+let scrollAnimationFrame;
+
+window.addEventListener('scroll', e => {
+  cancelAnimationFrame(scrollAnimationFrame);
+
+  scrollAnimationFrame = requestAnimationFrame(() => {
+    if (isSticky()){
+      const skillsOffsetTop = skillsSection.offsetTop;
+      const skillsOffsetHeight = skillsSection.offsetHeight / 2;
+      const gamingOffsetTop = gamingSection.offsetTop;
+      const gamingOffsetHeight = gamingSection.offsetHeight / 2;
+      
+      if (window.scrollY >= gamingOffsetTop && window.scrollY <= gamingOffsetTop + gamingOffsetHeight / 10) {
+        document.querySelectorAll('section.gaming img').forEach((el, i) => {
+          el.style.bottom = Math.max(
+            i * 350 * (gamingOffsetHeight / 10 - (window.scrollY - gamingOffsetTop)) / gamingOffsetHeight,
+            0
+          );
+        });
+      }
+
+      if (window.scrollY >= skillsOffsetTop) {
+        const percentage = 25 * (window.scrollY - skillsOffsetTop) / skillsOffsetHeight;
+        const mod = percentage % 0;
+  
+        document.querySelectorAll('div.skill').forEach((el, i) => {
+          let val = Math.max(0.25, percentage - i);
+          if (el.style.opacity != val)
+            el.style.opacity = Math.max(0.25, percentage - i);
+        });
+  
+        document.querySelectorAll('div.year').forEach((el, i) => {
+          el.style.opacity = Math.max(
+            percentage > NUMS_SKILLS_BY_YEAR[i + 1] ? 1 :
+              (percentage - NUMS_SKILLS_BY_YEAR[i]) / (NUMS_SKILLS_BY_YEAR[i + 1] - NUMS_SKILLS_BY_YEAR[i]),
+            0.25
+          );
+        });
+      }
+    }
+  });
+});
+  </script>
 </body>
 </html>

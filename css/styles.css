@@ -46,6 +46,7 @@ nav > div.right a {
 figure a {
   color: #a1a1a6;
   font-size: 1.2rem;
+  padding: 8px;
 }
 
 nav > div.right a:hover, section a:hover {
@@ -113,17 +114,16 @@ figure {
 }
 
 section {
-  background: black;
   color: #e1e1e8;
   position: relative;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  border-bottom: 1px solid #0f0f0f;
+  align-items: flex-start;
+  border-bottom: 1px solid #1f1f1f;
   max-width: 1440px;
   margin: auto;
   box-sizing: border-box;
-  padding: 48px 0;
-  min-height: 100vh;
 }
 
 section:last-of-type {
@@ -140,13 +140,16 @@ section div.container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.5em;
+  padding: 64px 1.5rem 0 1.5rem;
   box-sizing: border-box;
+  min-height: 640px;
 }
 
 section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  text-align: center;
 } 
 
 section h4 {
@@ -161,7 +164,6 @@ section p {
 }
 
 div.text-container {
-  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -175,14 +177,32 @@ section div.two-columns, section div.two-columns-images {
 
 section div.two-columns-images {
   user-select: none;
+  position: relative;
+  padding-bottom: 1rem;
 }
 
 section div.two-columns > div {
   position: relative;
 }
 
-section div.two-columns-images > * {
-  flex: 0 0 50%;
+section.dual div > img {
+  transform-origin: 50% 50%;
+  width: max(320px, 81.6666666667%);
+  margin-top: 2rem;
+}
+
+section.dual img:first-child {
+  transform: perspective(100px) rotateY(-2deg) translateX(-1%);
+  box-shadow: 3px 0 3px #5f5f5f7f;
+}
+
+section.dual img:last-child {
+  transform: perspective(100px) rotateY(2deg) translateX(1%);
+  box-shadow: -3px 0 3px #5f5f5f7f;
+}
+
+figure > img {
+  width: 100%;
 }
 
 section.dual div > img, figure > img  {
@@ -190,28 +210,9 @@ section.dual div > img, figure > img  {
   padding: 1rem;
   background-color: #171717;
   border: 2px solid #5f5f5f;
-  width: 100%;
   height: auto;
   box-shadow: 0 0 3px 3px #5f5f5f7f;
   box-sizing: border-box;
-}
-
-section.dual div > img {
-  margin-top: 40px;
-}
-
-section.dual img:first-child {
-  transform-origin: 100% 50%;
-  width: 62.5%;
-  transform: scaleY(1.25) perspective(100px) rotateY(-2deg) translateX(-5%);
-  box-shadow: 3px 0 3px #5f5f5f7f;
-}
-
-section.dual img:last-child {
-  transform-origin: 0% 50%;
-  width: 57.5%;
-  transform: scaleY(1.15) perspective(100px) rotateY(2deg) translateX(-3%);
-  box-shadow: -3px 0 3px #5f5f5f7f;
 }
 
 section.mapping div.container {
@@ -225,14 +226,14 @@ section.mapping div.container > div {
 section.mapping figure {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
+  margin-bottom: 1rem;
 }
 
 section.mapping div.carousel-vertical {
   overflow: hidden;
   position: relative;
-  margin-top: 48px;
-  max-width: 640px;
+  margin-top: 1rem;
+  max-width: min(640px, 66vh);
 }
 
 div.carousel-vertical figure > img {
@@ -243,34 +244,39 @@ div.carousel-vertical figure > img {
 }
 
 div.carousel-vertical figure a {
-  margin: 0.5em 0 0 16px;
+  margin-left: 1rem;
 }
 
-section.gaming figure {
-  flex: 0 0 50%;
-}
-
-section.gaming figure > img {
+section.gaming figure, section.productivity figure {
+  flex: 1 1 50vh;
   width: 100%;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-  background: none;
+}
+
+section.gaming figure > img,
+section.productivity figure > img {
+  width: 100%;
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 1600px;
   height: auto;
   transform: translateX(-50%);
   transform-origin: 50% 100%;
 }
 
-section.gaming figure:after {
+section.gaming figure > img {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: none;
+  width: max(1320px, min(1600px, 250vw));
+}
+
+section.gaming figure:after, section.productivity figure::after {
   content: " ";
-  background: linear-gradient(#00000000 0%, #000000 95%);
+  background: linear-gradient(#00000000 0%, #0000007f 35%, #000000 95%);
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%);
   bottom: 0;
   width: 100vw;
   height: 240px;
@@ -280,7 +286,7 @@ section.gaming figure > a, section.productivity figure > a {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 64px;
+  bottom: 48px;
   z-indeX: 2;
   width: 100%;
   text-align: center;
@@ -288,7 +294,6 @@ section.gaming figure > a, section.productivity figure > a {
 }
 
 section.productivity figure {
-  position: relative;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -297,21 +302,10 @@ section.productivity figure {
   overflow-x: visible;
 }
 
-section.productivity figure img {
-  width: calc(100% - 10px);
-  margin-bottom: 32px;
-  max-width: 1000px;
-}
-
-section.productivity figure::after {
-  width: 100%;
-  height: 100%;
-  content: " ";
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  box-shadow: 0 -200px 200px 0 #000 inset;
+section.productivity figure > img {
+  max-width: max(100vh, 720px);
+  min-width: max(576px, min(100vw, 720px));
+  margin-bottom: 4px;
 }
 
 @media (min-width: 576px) {
@@ -320,6 +314,7 @@ section.productivity figure::after {
   }
   section div.container{
     flex: 0 0 90%;
+    min-height: max(100vh, 720px);
   }
 
   section h2 {
@@ -343,10 +338,11 @@ section.productivity figure::after {
 
   section.mapping div.container {
     flex-direction: row;
+    flex: 0 0 83.3333333333%;
   }
 
   section div.two-columns > div {
-    padding: 1.5rem;
+    padding: 0 1.5rem;
     position: relative;
   }
 
@@ -356,19 +352,45 @@ section.productivity figure::after {
     margin-right: 2em;
   }
 
-  section {
-    min-height: 200vh;
-  }
-
   section div.two-columns > div {
     flex: 0 0 41.6666666666%;
   }
 
-  section div.container{
-    flex: 0 0 83.3333333333%;
-    top: 0;
-    position: sticky;
-    height: 100vh;
+  section.dual img:first-child {
+    transform-origin: 100% 50%;
+    width: max(400px, min(62.5%, 100vh));
+    transform: perspective(100px) rotateY(-2deg) translateX(-1%);
+    box-shadow: 3px 0 3px #5f5f5f7f;
+  }
+
+  section.dual img:last-child {
+    transform-origin: 0% 50%;
+    width: max(400px, min(62.5%, 100vh));
+    transform: perspective(100px) rotateY(2deg) translateX(1%);
+    box-shadow: -3px 0 3px #5f5f5f7f;
+  }
+
+  div.visualization img{
+    z-index: -1;
+  }
+
+  @media (min-height: 720px) {
+
+    section div.container{
+      top: 0;
+      position: sticky;
+      min-height: 100vh;
+    }
+  
+    section div.container > .text-container {
+      flex: 1 0 auto;
+    }
+  
+    section {
+      min-height: 200vh;
+    }
+
+
   }
 }
 
@@ -381,4 +403,81 @@ section.productivity figure::after {
     width: 360px;
     margin-right: 3em;
   }
+}
+
+#years-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.year {
+  background-color: #ffcf3f;
+  padding: 2px 0;
+  box-sizing: border-box;
+  width: 40px;
+  text-align: center;
+  border-radius: 10px;
+  color: black;
+  margin: 0 4px;
+}
+
+#skills-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: min(1000px, 100vw);
+  height: min(350px, 35vw);
+  align-self: flex-end;
+  position: relative;
+}
+
+#skills-container canvas {
+  position: absolute;
+  width: min(875px, 87.5vw);
+  height: min(236px, 23.6vw);
+  top: calc(50% + 2.25em);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.12;
+}
+
+.skill-row {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+}
+
+.skill {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.skill::after {
+  content: ' ';
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  background: #7fdfff;
+  box-shadow: 0 0 6px 2px #3fbfffdf;
+  width: 0.375rem;
+  height: 0.375rem;
+  transform-origin: 50% 0;
+  transform: translate(-50%, 2rem);
+  border-radius: 50%;
+  /* box-shadow: 0 0 0.625rem 0.625rem #ffffffbf; */
+}
+
+div.visualization {
+  position: relative;
+  box-shadow: inset 0 0 3em 4em #000;
+}
+div.visualization img{
+  opacity: 0.35;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
