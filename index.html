@@ -106,7 +106,21 @@
     <div class="container">
       <div class="text-container">
         <h2>Stay unsatiated. Keep learning.</h2>
-        <p>Since the first line of JavaScript I wrote in 2013, I have been continuously learning new languages, libraries, frameworks, as well as advanced data structures and algorithm in order to keep up with the advancing technologies that may bring positive changes to city life. Long journey as it is, I am taking solid steps day by day towards future goals.</p>
+        <p>Since the first line of JavaScript I wrote in 2013, I have been continuously learning new languages, libraries, frameworks, as well as advanced data structures and algorithms in order to keep up with the advancing technologies that may bring positive changes to city life. Long journey as it is, I am taking solid steps day by day towards future goals.</p>
+        <div class="accomplishments">
+          <div class="accomplishment">
+            <span>10,000+ Lines</span>
+            of JS / React codes per year
+          </div>
+          <div class="accomplishment">
+            <span>10+ Apps</span>
+            
+          </div>
+          <div class="accomplishment">
+            <span>5 Awards</span>
+            related to 
+          </div>
+        </div>
       </div>
       <div class="visualization">
         <img src="./assets/img/galaxy.jpg"/>
@@ -201,8 +215,8 @@ window.addEventListener('scroll', e => {
       const dualOffsetTop = dualSection.offsetTop;
       const dualOffsetHeight = dualSection.offsetHeight / 2;
 
-      if (scrollY >= dualOffsetTop && scrollY <= dualOffsetTop + dualOffsetHeight / 2){
-        const percentage = (dualOffsetHeight / 2 - scrollY + dualOffsetTop) / dualOffsetHeight * 2;
+      if (scrollY >= dualOffsetTop && scrollY <= dualOffsetTop + dualOffsetHeight / 4){
+        const percentage = (dualOffsetHeight / 4 - scrollY + dualOffsetTop) / dualOffsetHeight * 4;
         dualImages[0].style.transform = `perspective(100px) rotateY(${-2 - percentage * 1.5}deg) translate(-1%, ${percentage * 6 - 3}%)`;
         dualImages[1].style.transform = `perspective(100px) rotateY(${3 - percentage * 1.5}deg) translate(1%)`;
         return;
@@ -211,12 +225,14 @@ window.addEventListener('scroll', e => {
       const gamingOffsetTop = gamingSection.offsetTop;
       const gamingOffsetHeight = gamingSection.offsetHeight / 2;
 
-      if (scrollY >= gamingOffsetTop && scrollY <= gamingOffsetTop + gamingOffsetHeight / 10) {
+      if (scrollY >= gamingOffsetTop && scrollY <= gamingOffsetTop + gamingOffsetHeight / 2) {
         document.querySelectorAll('section.gaming img').forEach((el, i) => {
-          el.style.bottom = Math.max(
-            i * 350 * (gamingOffsetHeight / 10 - (scrollY - gamingOffsetTop)) / gamingOffsetHeight,
+          let offset = Math.max(
+            i * 75 * (gamingOffsetHeight / 2 - (scrollY - gamingOffsetTop)) / gamingOffsetHeight,
             0
           );
+          
+          el.style.transform = `translate(-50%, -${offset}px)`; 
         });
 
         return;
