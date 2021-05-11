@@ -374,7 +374,7 @@ section.productivity figure > img {
     z-index: -1;
   }
 
-  @media (min-height: 720px) {
+  @media (min-height: 768px) {
 
     section div.container{
       top: 0;
@@ -474,6 +474,7 @@ section.productivity figure > img {
 div.visualization {
   position: relative;
   box-shadow: inset 0 0 3em 4em #000;
+  -webkit-transform-style: flat;
 }
 div.visualization img{
   opacity: 0.35;

@@ -70,7 +70,7 @@
         </figure>
         <figure>
           <img src="./assets/img/mapping-bh.jpg" alt=""/>
-          <caption><a href="http://www.jka-la.com/LAB/1301/">Visit Beverly Hills Single Family Residential Virtual Ordinance</a></caption>
+          <caption><a href="http://www.jka-la.com/LAB/1301/">Visit Beverly Hills Single-Family Residential Virtual Ordinance</a></caption>
         </figure>
       </div>
     </div>
@@ -140,7 +140,7 @@ const gamingSection = document.querySelector('section.gaming');
 const skillsContainer = document.getElementById('skills-container');
 const skillsSection = document.querySelector('section.skills');
 const dualImages = document.querySelectorAll('section.dual img');
-const isSticky = () => window.innerHeight >= 720 && window.innerWidth >= 768;
+const isSticky = () => window.innerHeight >= 768 && window.innerWidth >= 768;
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -217,7 +217,8 @@ window.addEventListener('scroll', e => {
 
       if (scrollY >= dualOffsetTop && scrollY <= dualOffsetTop + dualOffsetHeight / 4){
         const percentage = (dualOffsetHeight / 4 - scrollY + dualOffsetTop) / dualOffsetHeight * 4;
-        dualImages[0].style.transform = `perspective(100px) rotateY(${-2 - percentage * 1.5}deg) translate(-1%, ${percentage * 6 - 3}%)`;
+        console.log(percentage)
+        dualImages[0].style.transform = `perspective(100px) rotateY(${-1.5 - percentage * 1.5}deg) translate(-1%, ${percentage * 6 - 3}%)`;
         dualImages[1].style.transform = `perspective(100px) rotateY(${3 - percentage * 1.5}deg) translate(1%)`;
         return;
       }

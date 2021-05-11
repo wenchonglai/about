@@ -22,6 +22,8 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	-webkit-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -29,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 html {
-	line-height: 1.25;
+	line-height: 1.5;
   -webkit-text-size-adjust: 100%;
 	font-size: 14px;
 }
