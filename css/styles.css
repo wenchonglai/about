@@ -410,6 +410,21 @@ div.accomplishment span {
   background-image: linear-gradient(190deg, #7fbdff 25%, #9e62ff 65%, #f4596d 105%);
 }
 
+.scroll-down-indicator::after{
+  content: "Scroll down for more...";
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  z-index: 12;
+  bottom: 10px;
+  font-size: 1.2rem;
+  color: #a1a1a6;
+  text-shadow: 0 0 6px 6px #000000;
+  display: none;
+}
+
 @media (min-width: 576px) {
   header.masthead h1 {
     font-size: 72px;
@@ -426,6 +441,10 @@ div.accomplishment span {
 
   section h4 {
     font-size: 1.5rem;
+  }
+
+  .scroll-down-indicator::after {
+    display: block;
   }
 }
 

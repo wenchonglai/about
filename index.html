@@ -30,7 +30,7 @@
     </div>
   </nav>
   <header class="masthead">
-    <div class="container">
+    <div class="container scroll-down-indicator">
       <h1>Wenchong Lai</h1>
       <div>
         <h3 class="clip">Software Engineer <br/> <span>with city planning expertise.</span></h3>
@@ -39,7 +39,7 @@
     </div>
   </header>
   <section class="dual">
-    <div class="container">
+    <div class="container scroll-down-indicator">
       <h2>Create synergy between two disciplines.</h2>
       <div class="two-columns">
         <div>
@@ -58,7 +58,7 @@
     </div>
   </section>
   <section class="mapping">
-    <div class="container">
+    <div class="container scroll-down-indicator">
       <div class="text-container">
         <h2>Make story-telling interactive maps.</h2>
         <p>Since 2013, I have started developing web applications for interactive maps using JavaScript, jQuery, SVG, Canvas, and React. Compared to the static maps that planners conventionally produce, these interactive maps were much more powerful in conveying comprehensive, informative, and personalized messages tailored to each and every individual amongst thousands of recipients. These interactive maps were also proven to be more cost-efficient, as the web-based approach eliminates countless redraws that may incur during design iterations.</p>
@@ -76,7 +76,7 @@
     </div>
   </section>
   <section class="gaming" id="gaming">
-    <div class="container">
+    <div class="container scroll-down-indicator">
       <div class="text-container">
         <h2>Maps are fun. Play with them!</h2>
         <p>Map-based video games such as SimCity and Civilization always fascinate me. Recently, I started developing my own strategic board game. My ultimate goal is to create a turn-based game that incorporates a geographic information system and cellular automata in order to adequately address how geography affects economy system and logistics. </p>
@@ -91,7 +91,7 @@
     </div>
   </section>
   <section class="productivity">
-    <div class="container">
+    <div class="container scroll-down-indicator">
       <div class="text-container">
         <h2>Boost up design productivity through IT.</h2>
         <p>I write code that automates repetitive architecture design processes. After joining JKA, I reduce the time spent in 3D base mapping and building cost estimation by over 90%. Full-stack software engineering training in App Academy further prepared me for developing the back-end of office productivity tools using modern application frameworks such as Ruby on Rails and MERN.</p>
@@ -129,7 +129,6 @@
       </div>
     </div>
   </section>
-
   <script>
 
 const GAPS = 8;
@@ -215,9 +214,9 @@ window.addEventListener('scroll', e => {
       const dualOffsetTop = dualSection.offsetTop;
       const dualOffsetHeight = dualSection.offsetHeight / 2;
 
-      if (scrollY >= dualOffsetTop && scrollY <= dualOffsetTop + dualOffsetHeight / 4){
-        const percentage = (dualOffsetHeight / 4 - scrollY + dualOffsetTop) / dualOffsetHeight * 4;
-        console.log(percentage)
+      if (scrollY >= dualOffsetTop - 500 && scrollY <= dualOffsetTop + dualOffsetHeight / 4 + 250){
+        const percentage = Math.max((dualOffsetHeight / 4 - Math.max(scrollY, dualOffsetTop) + dualOffsetTop), 0) / dualOffsetHeight * 4;
+
         dualImages[0].style.transform = `perspective(100px) rotateY(${-1.5 - percentage * 1.5}deg) translate(-1%, ${percentage * 6 - 3}%)`;
         dualImages[1].style.transform = `perspective(100px) rotateY(${3 - percentage * 1.5}deg) translate(1%)`;
         return;
@@ -226,10 +225,10 @@ window.addEventListener('scroll', e => {
       const gamingOffsetTop = gamingSection.offsetTop;
       const gamingOffsetHeight = gamingSection.offsetHeight / 2;
 
-      if (scrollY >= gamingOffsetTop && scrollY <= gamingOffsetTop + gamingOffsetHeight / 2) {
+      if (scrollY >= gamingOffsetTop - 250 && scrollY <= gamingOffsetTop + gamingOffsetHeight / 2 + 250) {
         document.querySelectorAll('section.gaming img').forEach((el, i) => {
           let offset = Math.max(
-            i * 75 * (gamingOffsetHeight / 2 - (scrollY - gamingOffsetTop)) / gamingOffsetHeight,
+            i * 75 * (gamingOffsetHeight / 2 - Math.max((scrollY - gamingOffsetTop), 0)) / gamingOffsetHeight,
             0
           );
           
@@ -242,7 +241,7 @@ window.addEventListener('scroll', e => {
       const skillsOffsetTop = skillsSection.offsetTop;
       const skillsOffsetHeight = skillsSection.offsetHeight / 2;
 
-      if (scrollY >= skillsOffsetTop) {
+      if (scrollY >= skillsOffsetTop - 250) {
         const percentage = 25 * (scrollY - skillsOffsetTop) / skillsOffsetHeight;
         const mod = percentage % 0;
   
