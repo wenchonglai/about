@@ -241,8 +241,8 @@ window.addEventListener('scroll', e => {
       const skillsOffsetTop = skillsSection.offsetTop;
       const skillsOffsetHeight = skillsSection.offsetHeight / 2;
 
-      if (scrollY >= skillsOffsetTop - 250) {
-        const percentage = 25 * (scrollY - skillsOffsetTop) / skillsOffsetHeight;
+      if (scrollY >= skillsOffsetTop - 750) {
+        const percentage = Math.max( 25 * (scrollY - skillsOffsetTop) / skillsOffsetHeight, 0);
         const mod = percentage % 0;
   
         document.querySelectorAll('div.skill').forEach((el, i) => {
