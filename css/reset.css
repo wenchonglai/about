@@ -37,8 +37,13 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video{
-	-webkit-transform-style: preserve-3d;
 	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+}
+
+html {
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
