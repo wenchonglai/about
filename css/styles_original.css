@@ -5400,6 +5400,7 @@ a.close.disabled {
 
 .modal {
   position: fixed;
+  will-change: transform;
   top: 0;
   left: 0;
   z-index: 1050;
@@ -5488,6 +5489,7 @@ a.close.disabled {
 
 .modal-backdrop {
   position: fixed;
+  will-change: transform;
   top: 0;
   left: 0;
   z-index: 1040;
@@ -7373,14 +7375,17 @@ button.bg-dark:focus {
 
 .position-fixed {
   position: fixed !important;
+  will-change: transform;
 }
 
 .position-sticky {
   position: sticky !important;
+  will-change: transform;
 }
 
 .fixed-top {
   position: fixed;
+  will-change: transform;
   top: 0;
   right: 0;
   left: 0;
@@ -7389,6 +7394,7 @@ button.bg-dark:focus {
 
 .fixed-bottom {
   position: fixed;
+  will-change: transform;
   right: 0;
   bottom: 0;
   left: 0;
@@ -7398,6 +7404,7 @@ button.bg-dark:focus {
 @supports (position: sticky) {
   .sticky-top {
     position: sticky;
+    will-change: transform;
     top: 0;
     z-index: 1020;
   }
